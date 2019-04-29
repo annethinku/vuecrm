@@ -9,5 +9,7 @@ export default {
     {name:'ziksang4',age:30},
     {name:'ziksang5',age:35},
     {name:'ziksang6',age:80},
-  ]
+  ],
+  count: 0,
+  num:0
 }

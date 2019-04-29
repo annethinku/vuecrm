@@ -1,5 +1,8 @@
 <template>
   <div id="app">
+    <!-- <input type="text" v-model="countValue">
+    <button @click="setCount">点击</button>
+    {{count}} -->
     <router-view/>
   </div>
 </template>
@@ -7,6 +10,19 @@
 <script>
 export default {
   name: "App",
+  data () {
+    return {
+      countValue: ''
+    }
+  },
+  computed: {
+    // 这是计算属性，通常获取vuex里面的值都这样获取，你看下面的return就明白了，所以上面才可以直接{{count}}
+    //这个不是方法，？方法都在methods里面，这是计算属性，我才知道计算属性可{{}}这样用，你空了可以去看看，记住这样用就行了，相当于在data里面的值，好，你先捋一捋，我有点东西要写。嗯，不懂直接微信给我说。那断了？嗯 
+
+    count () {
+      return this.$store.state.count
+    }
+  },
   created() {
     // this.prm().then(res => {
     //   // 这里的res就是123  明白了不 两个then  现在呢 好吧  明白了不  所以知道axios为啥是promise了吧 嗯
@@ -99,6 +115,13 @@ export default {
   },
 
   methods: {
+    setCount () {
+      // 这种是直接调用mutation,没经过action,因为这不是异步操作。 那你为啥还要在getter操作？getter操作没用，可以删掉，getter和action又没关系 ok，
+      // 这种是一样的 ，明白了没，action是操作mutation.
+      // 说明白点：就是先把值传给action，action在调用mutation，然后再传给state,懂了没，刚刚是直接传给mutation，没经过action,都一样的。
+      //我是从你开始写就有点乱 那个count()方法是干啥的 没有这个方法
+      this.$store.dispatch('setCount', this.countValue)
+    },
     prm (){
       // 现在你知道为什么axios是返回一个peomsie了不 不知道 你不是在讲promise么
       // 我是说刚刚那个啊  是因为返回的promise？

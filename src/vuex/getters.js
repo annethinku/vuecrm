@@ -5,5 +5,8 @@ export  default {
         return true
       }
     })
+  },
+  count: (state) => {
+    return state.count
   }
 }

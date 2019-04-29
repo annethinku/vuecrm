@@ -25,6 +25,69 @@
           <li>action解决异步改变共享数据</li>
         </ul>
         <p>vuex文件夹：index.js、mutation.js、state.js、getters.js、actions.js</p>
+        <pre>================未使用到action的例子======================
+[state.js:]
+export default{
+  count:0
+}
+[mutations.js：]
+export default{
+  setCount(state,count){
+    state.count=count;
+  }
+}
+[ test.vue: ]
+{{html}}
+computed:{
+  count(){
+    return this.$store.state.count
+  }
+}
+methods:{
+  setCount(){
+    this.$store.commit('setCount',this.countVal);
+  }
+}
+================使用到action的例子======================
+[state.js]
+export default{
+  num:0
+}
+[mutations.js]
+export default{
+  SET_NUM(state,num){
+    state.num=num;
+  }
+}
+[actions.js]
+export default{
+ set_num({commit},num){
+    return new Promise((resolve,reject)=>{
+      setTimeout(()=>{
+        commit('SET_NUM',num)
+        resolve('成功改变num');
+      },2000)
+    })
+  }
+}
+[test.vue]
+{{html2}}
+computed:{
+  num(){
+    return this.$store.state.num
+  }
+}
+methods:{
+ setNums(){
+   this.$store.dispatch('set_num',this.numval).then((res)=>{
+    //  延迟执行为了看到值变化 action异步改变数据
+     setTimeout(()=>{
+       this.$store.commit('SET_NUM',res);
+     },3000)
+   })
+ }
+}
+        </pre>
       </div>
       <div class="promise">
         <h4>es6相关信息：</h4>
@@ -78,6 +141,8 @@ console.log('我虽然在后面，但是先执行');</pre>
           return{
             message:'My name is xiaoxiao',
             childMsg:'',
+            html:'<input type="text" v-model="countVal"/> <button @click="setCount()">点我</button> {{count}}',
+            html2:'<input type="text" v-model="numval"/> <button @click="setnums()">点我</button> {{num}}'
           }
       },
       components:{

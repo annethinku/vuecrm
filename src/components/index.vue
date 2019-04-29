@@ -1,10 +1,11 @@
 <template>
   <div class="index">
+    <img src="../../static/images/flowers.gif" alt="花瓣"/>
     <div class="login-out">
       <Card :bordered="false">
         <p slot="title">
-          <Icon type="ios-arrow-dropright" color="#bd8c5f"/>
-          <span style="color: #bd8c5f">欢迎登录</span></p>
+          <Icon type="ios-arrow-dropright" color="#608041"/>
+          <span style="color: #608041">欢迎登录</span></p>
         <Form ref="formInline" :model="formInline" :rules="ruleInline">
           <FormItem prop="user">
             <Input type="text" v-model="formInline.user" placeholder="用户名" size="large">
@@ -16,8 +17,11 @@
               <Icon type="ios-lock-outline" slot="prepend"></Icon>
             </Input>
           </FormItem>
-          <FormItem>
-            <div align="center"><Button type="primary" @click="handleSubmit('formInline')" size="large" style="background: #e0ab72;width: 50%;border:none;">登录</Button></div>
+          <FormItem style="margin-top: 60px;">
+            <div align="center"><Button type="primary" @click="handleSubmit('formInline')" size="large" style="background: #608041;width: 30%;border:none;">登录</Button></div>
+            <div class="bot-tishi">
+              输入任意用户名、密码都可登录
+            </div>
           </FormItem>
         </Form>
       </Card>
@@ -72,18 +76,26 @@ export default {
     position: fixed;
     left: 0;
     top: 0;
-    background: url("../assets/bg1.jpg") no-repeat;
-    background-size: cover;
+    background: #cbd6dc;
   }
   .login-out{
-    width: 400px;
+    width: 658px;
+    height: 194px;
+    background: url("../assets/bg1.jpg") no-repeat center;
     position: fixed;
-   left: 50%;
-    margin-left: -200px;
-    top: 50%;
-   transform: translateY(-50%);
+    left:50%;
+    top: 30%;
+    transform: translate(-50%,-50%);
   }
   .ivu-card{
     background: rgba(255,255,255,0.6);
+  }
+  .bot-tishi{
+    text-align: center;
+    color: #999;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%,0);
+    bottom: -30px;
   }
 </style>
