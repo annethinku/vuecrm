@@ -36,7 +36,7 @@
       showDetail(id){
         this.$Modal.info({
           title: '商品详情',
-          content: `原价：${this.row.goods_mprice}`
+          content: `<p>原价：${this.row.goods_mprice} </p><div style="width: 100%;">图片：<img src="${this.row.real_bannerimgs_array[0]}" style="width: 100%;"/> </div>`
         })
       }
     }
